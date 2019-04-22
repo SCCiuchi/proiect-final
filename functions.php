@@ -1,9 +1,29 @@
 <?php
 
+    require('db_connection.php');
+
+    function getDataFromDatabase()
+    {
+        $conn = createDbConnection();
+
+        $sql = "SELECT * FROM catalog";
+        $result = $conn->query($sql);
+        $output = '';
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo $output .= $row;
+            }
+        }
+
+        return $output;
+//        $conn->close();
+    }
+
     function formatData()
     {
         // transformam fisierul csv intr-un array
-
         $file_str = file_get_contents('data.csv');
         $rows_arr = explode("\r\n", $file_str);
         $data_arr = array();
@@ -68,20 +88,17 @@
     {
         // afisam datele
         $data_arr_final = filterArrayData();
-        $output = '';
+        $output_model = '';
+        $output_color = '';
+        $output_year = '';
+        $output_price = '';
 
         foreach ($data_arr_final as $data) {
-
-            $output .= '<ul>';
-
-            $output .= '<li>Marca: '.$data['marca'].'</li>';
-            $output .= '<li>Culoare: '.$data['culoare'].'</li>';
-            $output .= '<li>An: '.$data['an'].'</li>';
-            $output .= '<li>Pret: '.$data['pret'].'</li>';
-
-            $output .= '</ul>';
-
+            $output_model .= $data['marca'];
+            $output_color .= $data['culoare'];
+            $output_year .= $data['an'];
+            $output_price .= $data['pret'];
         }
 
-        return $output;
+        return $output_model;
     }
