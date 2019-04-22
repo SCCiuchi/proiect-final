@@ -42,11 +42,9 @@
 		<div id="rezultate">
 		
 			<?php
-			
 			require_once('functions.php');
 			
-			echo generare_rezultate();
-			
+			echo displayFilteredData();
 			?>
 		
 		</div>
