@@ -1,8 +1,33 @@
 <?php
+require_once(dirname(__FILE__) . '/../database/db_connection.php');
 
-require(dirname(__FILE__).'/../database/db_connection.php');
+function insertNewProductInDatabase()
+{
+    $conn = createDbConnection();
 
-function getDataFromDatabase():array
+    if (!empty($_GET)) {
+        $model = ucfirst($_GET['model']);
+        $color = ucfirst($_GET['color']);
+        $year = $_GET['year'];
+        $price = trim($_GET['price']);
+        $url = $_GET['url'];
+
+        $sql = "INSERT INTO `catalog` (model, color, year, price, url)
+            VALUES ('{$model}', '{$color}', '{$year}', '{$price}', '{$url}')";
+
+        if ($conn->query($sql) === true) {
+            echo "New product added successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
+    } else {
+        echo 'Incorrect data inserted';
+    }
+}
+
+function getDataFromDatabase(): array
 {
     $conn = createDbConnection();
 
@@ -20,7 +45,7 @@ function getDataFromDatabase():array
     return $output;
 }
 
-function filterArrayData():array
+function filterArrayData(): array
 {
     $data_arr = getDataFromDatabase();
     $data_arr_final = array();
@@ -58,7 +83,7 @@ function filterArrayData():array
     return $data_arr_final;
 }
 
-function displayFilteredData():array
+function displayFilteredData(): array
 {
     $data_arr_final = filterArrayData();
     $output = [];
