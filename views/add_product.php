@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__) . '../src/functions.php');
+require_once ('../src/functions.php');
 ?>
 <html>
 <head>
@@ -29,6 +29,6 @@ include(dirname(__FILE__) . '../src/functions.php');
             <a href="../index.php" class="btn btn-primary btn-lg" style="margin-top: 25px; margin-left: 10px;" id="back" role="button">Go Back</a>
     </form>
 <hr id="separator" style="margin-top: 20px; border-top: 1px dashed black; border-radius: 35px;"/>
-    <?php insertNewProductInDatabase();?>
+    <?php insertNewProductInDatabase(); ?>
 </body>
 </html>
