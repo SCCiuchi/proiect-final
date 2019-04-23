@@ -1,48 +1,67 @@
+<?php
+require_once('functions.php');
+?>
 <html>
-	<head>
-		<title>Filtru de continut</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-	<body>
-		<form action="" method="get" autocomplete="off">
-			<select name="marca">
-				<option value="all" selected>Toate marcile</option>
-				<option value="Dacia">Dacia</option>
-				<option value="Ford">Ford</option>
-				<option value="Toyota">Toyota</option>
-			</select> |
-			<select name="culoare">
-				<option value="all" selected>Toate culorile</option>
-				<option value="alb">Alb</option>
-				<option value="albastru">Albstru</option>
-				<option value="rosu">Rosu</option>
-				<option value="gri">Gri</option>
-			</select> |
-			<select name="an">
-				<option value="all" selected>Toti anii</option>
-				<option value="2016">2016</option>
-				<option value="2017">2017</option>
-				<option value="2018">2018</option>
-			</select> |
-			    Pret maxim: <input name="pret_maxim" value="" /> |
-			<input type="submit" value="Filtrare" /> <a href="/">Resetare</a>
-		</form>
-		<hr />
-		<div id="rezultate">
-            <div class="card" style="width: 18rem; height: 10rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <?php
-                    require_once('functions.php');
-                    require_once('db_connection.php');
-                    ?>
-                    <h5 class="card-title"><?php echo filterArrayData(); ?></h5>
-                    <p class="card-text">Culoare</p>
-                    <p class="card-text">An</p>
-                    <p class="card-text">Pret</p>
-                </div>
+<head>
+    <title>Car Listing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container"
+     style="height: auto; margin-top: 20px; margin-bottom: 20px; margin-left: fill; margin-right: fill;">
+    <form action="" method="get" autocomplete="off" style="justify-content: center">
+        <div class="row" style="flex: content-box; justify-content: center">
+            <div class="col-sm">
+                <select name="marca" class="btn btn-primary dropdown-toggle">
+                    <option value="All" selected>All Models</option>
+                    <option value="Dacia">Dacia</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Toyota">Toyota</option>
+                </select>
             </div>
-		</div>
-	</body>
+            <div class="col-sm">
+                <select name="culoare" class="btn btn-primary dropdown-toggle">
+                    <option value="All" selected>All Colors</option>
+                    <option value="alb">Alb</option>
+                    <option value="albastru">Albstru</option>
+                    <option value="rosu">Rosu</option>
+                    <option value="gri">Gri</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <select name="an" class="btn btn-primary dropdown-toggle">
+                    <option value="All" selected>All Years</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <input name="pret_maxim" value="" placeholder="Type in a price range"/>
+            </div>
+            <div class="col-sm">
+                <input class="btn btn-primary btn-sm" type="submit" value="Filtrare"/>
+                <a href="/" class="btn btn-primary btn-sm" role="button">Reset</a>
+            </div>
+        </div>
+    </form>
+</div>
+<hr/>
+<div class="" id="results">
+    <?php foreach (filterArrayData() as $elem): ?>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><?= $elem['model'] ?></h5>
+                    <small><?= $elem['price'] ?></small>
+                </div>
+                <p class="mb-1"><?= $elem['color'] ?></p>
+                <p class="mb-1"><?= $elem['year'] ?></p>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+</body>
 </html>
 
