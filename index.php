@@ -1,5 +1,5 @@
 <?php
-require_once('functions.php');
+require(dirname(__FILE__).'/src/functions.php');
 ?>
 <html>
 <head>
@@ -18,6 +18,8 @@ require_once('functions.php');
                     <option value="Dacia">Dacia</option>
                     <option value="Ford">Ford</option>
                     <option value="Toyota">Toyota</option>
+                    <option value="Seat">Seat</option>
+                    <option value="Mazda">Mazda</option>
                 </select>
             </div>
             <div class="col-sm">
@@ -27,14 +29,24 @@ require_once('functions.php');
                     <option value="albastru">Albstru</option>
                     <option value="rosu">Rosu</option>
                     <option value="gri">Gri</option>
+                    <option value="negru">Negru</option>
+                    <option value="gri">Verde</option>
                 </select>
             </div>
             <div class="col-sm">
                 <select name="an" class="btn btn-primary dropdown-toggle">
                     <option value="All" selected>All Years</option>
+                    <option value="2016">2009</option>
+                    <option value="2016">2010</option>
+                    <option value="2016">2011</option>
+                    <option value="2016">2012</option>
+                    <option value="2016">2013</option>
+                    <option value="2016">2014</option>
+                    <option value="2016">2015</option>
                     <option value="2016">2016</option>
                     <option value="2017">2017</option>
                     <option value="2018">2018</option>
+                    <option value="2018">2019</option>
                 </select>
             </div>
             <div class="col-sm">
@@ -53,8 +65,8 @@ require_once('functions.php');
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><?= $elem['model'] ?></h5>
-                    <small><?= $elem['price'] ?></small>
+                    <h5 class="mb-1"><strong><?= $elem['model'] ?></strong></h5>
+                    <small><strong>Price: </strong><?= $elem['price'] ?><strong> &euro;</strong></small>
                 </div>
                 <p class="mb-1"><?= $elem['color'] ?></p>
                 <p class="mb-1"><?= $elem['year'] ?></p>
@@ -64,4 +76,3 @@ require_once('functions.php');
 </div>
 </body>
 </html>
-

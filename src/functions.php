@@ -1,6 +1,6 @@
 <?php
 
-require('db_connection.php');
+require(dirname(__FILE__).'/../database/db_connection.php');
 
 function getDataFromDatabase():array
 {
@@ -20,7 +20,7 @@ function getDataFromDatabase():array
     return $output;
 }
 
-function filterArrayData()
+function filterArrayData():array
 {
     $data_arr = getDataFromDatabase();
     $data_arr_final = array();
@@ -28,13 +28,10 @@ function filterArrayData()
     if (empty($_GET)) {
         $data_arr_final = $data_arr;
     } else {
-        var_dump($_GET);
         $marca_f = ucfirst($_GET['marca']);
         $culoare_f = ucfirst($_GET['culoare']);
         $an_f = $_GET['an'];
         $pret_maxim_f = trim($_GET['pret_maxim']);
-
-        var_dump($marca_f . $culoare_f);
 
         foreach ($data_arr as $data) {
 
@@ -46,7 +43,7 @@ function filterArrayData()
                 continue;
             }
 
-            if ($an_f != 'all' && $an_f != $data['year']) {
+            if ($an_f != 'All' && $an_f != $data['year']) {
                 continue;
             }
 
@@ -61,7 +58,7 @@ function filterArrayData()
     return $data_arr_final;
 }
 
-function displayFilteredData()
+function displayFilteredData():array
 {
     $data_arr_final = filterArrayData();
     $output = [];
