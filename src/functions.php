@@ -28,26 +28,26 @@ function filterArrayData():array
     if (empty($_GET)) {
         $data_arr_final = $data_arr;
     } else {
-        $marca_f = ucfirst($_GET['marca']);
-        $culoare_f = ucfirst($_GET['culoare']);
-        $an_f = $_GET['an'];
-        $pret_maxim_f = trim($_GET['pret_maxim']);
+        $model_f = ucfirst($_GET['model']);
+        $color_f = ucfirst($_GET['color']);
+        $year_f = $_GET['year'];
+        $price_f = trim($_GET['price']);
 
         foreach ($data_arr as $data) {
 
-            if ($marca_f != 'All' && $marca_f != $data['model']) {
+            if ($model_f != 'All' && $model_f != $data['model']) {
                 continue;
             }
 
-            if ($culoare_f != 'All' && $culoare_f != $data['color']) {
+            if ($color_f != 'All' && $color_f != $data['color']) {
                 continue;
             }
 
-            if ($an_f != 'All' && $an_f != $data['year']) {
+            if ($year_f != 'All' && $year_f != $data['year']) {
                 continue;
             }
 
-            if (!empty($pret_maxim_f) && $pret_maxim_f < $data['price']) {
+            if (!empty($price_f) && $price_f < $data['price']) {
                 continue;
             }
 
@@ -64,10 +64,11 @@ function displayFilteredData():array
     $output = [];
 
     foreach ($data_arr_final as $data) {
-        $output .= $data['marca'];
-        $output .= $data['culoare'];
-        $output .= $data['an'];
-        $output .= $data['pret'];
+        $output .= $data['model'];
+        $output .= $data['color'];
+        $output .= $data['year'];
+        $output .= $data['price'];
+        $output .= $data['url'];
     }
 
     return $output;

@@ -13,7 +13,7 @@ require(dirname(__FILE__).'/src/functions.php');
     <form action="" method="get" autocomplete="off" style="justify-content: center">
         <div class="row" style="flex: content-box; justify-content: center">
             <div class="col-sm">
-                <select name="marca" class="btn btn-primary dropdown-toggle">
+                <select name="model" class="btn btn-primary dropdown-toggle">
                     <option value="All" selected>All Models</option>
                     <option value="Dacia">Dacia</option>
                     <option value="Ford">Ford</option>
@@ -23,7 +23,7 @@ require(dirname(__FILE__).'/src/functions.php');
                 </select>
             </div>
             <div class="col-sm">
-                <select name="culoare" class="btn btn-primary dropdown-toggle">
+                <select name="color" class="btn btn-primary dropdown-toggle">
                     <option value="All" selected>All Colors</option>
                     <option value="alb">Alb</option>
                     <option value="albastru">Albstru</option>
@@ -34,7 +34,7 @@ require(dirname(__FILE__).'/src/functions.php');
                 </select>
             </div>
             <div class="col-sm">
-                <select name="an" class="btn btn-primary dropdown-toggle">
+                <select name="year" class="btn btn-primary dropdown-toggle">
                     <option value="All" selected>All Years</option>
                     <option value="2016">2009</option>
                     <option value="2016">2010</option>
@@ -50,7 +50,7 @@ require(dirname(__FILE__).'/src/functions.php');
                 </select>
             </div>
             <div class="col-sm">
-                <input name="pret_maxim" value="" placeholder="Type in a price range"/>
+                <input name="price" value="" placeholder="Type in maximum price..."/>
             </div>
             <div class="col-sm">
                 <input class="btn btn-primary btn-sm" type="submit" value="Filtrare"/>
@@ -59,11 +59,11 @@ require(dirname(__FILE__).'/src/functions.php');
         </div>
     </form>
 </div>
-<hr/>
+<hr style="border-top: 1px dashed black; border-radius: 15px;"/>
 <div class="" id="results">
     <?php foreach (filterArrayData() as $elem): ?>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
+            <a name="url" href="<?= $elem['url'] ?>" target="_blank" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><strong><?= $elem['model'] ?></strong></h5>
                     <small><strong>Price: </strong><?= $elem['price'] ?><strong> &euro;</strong></small>
